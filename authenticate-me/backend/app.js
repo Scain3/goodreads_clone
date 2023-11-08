@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const { csrfSync } = require("csrf-sync");
+const session = require('express-session');
 
 const {
     invalidCsrfTokenError, // This is just for convenience if you plan on making your own middleware.
