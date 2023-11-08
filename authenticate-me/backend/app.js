@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
+const { csrfSync } = require("csrf-sync");
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 
@@ -23,6 +24,16 @@ if (!isProduction) {
   app.use(helmet({
     contentSecurityPolicy: false
   }));
+
+  app.use(
+    csrfSync({
+        cookie: {
+            secure: isProduction,
+            sameSite: isProduction && "Lax",
+            httpOnly: true,
+        }
+    })
+  )
 
   const routes = require('./routes');
 
