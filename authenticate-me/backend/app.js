@@ -28,7 +28,10 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(session);
+
+const myRoute = (req, res) => res.json({ token: generateToken(req) });
 app.get("/csrf-token", myRoute);
+
 app.use(csrfSynchronisedProtection);
 
 const myCsrfProtectionMiddleware = (req, res, next) => {
