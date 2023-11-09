@@ -27,7 +27,7 @@ app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(express.json());
 
-app.use(session);
+app.use(session());
 
 const myRoute = (req, res) => res.json({ token: generateToken(req) });
 app.get("/csrf-token", myRoute);
